@@ -3,7 +3,6 @@
 
 <head>
     {% load staticfiles %}
-    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="generator" content="Jekyll v3.8.5">
@@ -32,20 +31,29 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img src="{% static "blackhole.png" %}" height="25">Product Hunt</a>
+            <a class="navbar-brand" href="{% url '主页' %}"><img src="{% static "blackhole.png" %}" height="25">Product Hunt</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="#">Login in</a>
+
+                    {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="Javascript:{document.getElementById('out').submit()}">Login out</a>
+                    <form id='out' method='POST' action="{% url '退出页面' %}">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url '登录页面' %}">Login in</a>
                     <a class="nav-item nav-link " href="{% url '注册页面' %}" tabindex="-1" aria-disabled="true">Sign up</a>
+                    {% endif %}
+                    
                 </div>
             </div>
         </nav>
     </header>
     {% block content %}
-
     {% endblock content %}
     <footer class="text-muted">
         <div class="container">
