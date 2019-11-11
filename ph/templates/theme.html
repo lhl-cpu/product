@@ -37,8 +37,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-
                     {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{% url '发布页面' %}">Upload</a>
                     <a class="nav-item nav-link" href="Javascript:{document.getElementById('out').submit()}">Login out</a>
                     <form id='out' method='POST' action="{% url '退出页面' %}">
                         {% csrf_token %}
@@ -48,7 +48,6 @@
                     <a class="nav-item nav-link" href="{% url '登录页面' %}">Login in</a>
                     <a class="nav-item nav-link " href="{% url '注册页面' %}" tabindex="-1" aria-disabled="true">Sign up</a>
                     {% endif %}
-                    
                 </div>
             </div>
         </nav>
