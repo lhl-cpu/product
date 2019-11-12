@@ -36,19 +36,21 @@
 </head>
 
 <body>
-    <div class="row">
-        {% for product in products.all %}
-        <div class="thumbnail col-sm-6 col-md-4" style="width: 18rem;">
-            <img src="{{  product.icno.url  }}">
-            <div class="caption">
-                <h3><a href="products/{{  product.id  }}">{{  product.title  }}</a></h3>
-                <p>{{ product.text }}</p>
+    <div align="center">
+    <div class="card" style="max-width: 540px;" >
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{  product.icno.url  }}" class="card-img">
             </div>
-            <div class="caption">
-                <a href="#" class="card-link">{{ product.url }}</a>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.text }}</p>
+                    <p class="card-text"><small class="text-muted">链接: {{ product.url }}</small></p>
+                </div>
             </div>
         </div>
-        {% endfor %}
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

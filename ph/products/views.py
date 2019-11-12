@@ -1,13 +1,16 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from django.utils import timezone
 # Create your views here.
 
 def home(request):
-	return render(request,'home.html')
+	products = Product.objects
+	return render(request,'home.html',{'products':products})
 
-
+def detail(request,product_id):
+	product = get_object_or_404(Product,pk=product_id)
+	return render(request,'detail.html',{'product': product})
 
 @login_required
 def publish(request):
@@ -19,14 +22,12 @@ def publish(request):
 		url = request.POST['App链接']
 		try:
 			icno = request.FILES['App图标']
-			image = request.FILES['大图']
 
 			product = Product()
 			product.title = title
 			product.text = text
 			product.url = url
 			product.icno = icno
-			product.image = image
 
 			product.pub_date = timezone.datetime.now()
 			product.hunter = request.user

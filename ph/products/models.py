@@ -7,7 +7,6 @@ class Product(models.Model):
 	text = models.TextField(default='App简介')
 	url = models.CharField(default='Http://',max_length=100)
 	icno = models.ImageField(default='default.png',upload_to='images/')
-	image = models.ImageField(default='1.jpg',upload_to='images/')
 
 	votes = models.IntegerField(default=1)
 	pub_date = models.DateTimeField()
